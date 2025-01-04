@@ -6,6 +6,10 @@ sudo apt-get update && sudo apt-get upgrade -y
 # Install necessary packages
 sudo apt-get install -y curl git vim zsh nano fzf direnv bat gpg
 
+# Set bat
+ln -s /usr/bin/batcat ~/.local/bin/bat
+echo 'alias cat="bat"' >> ~/.zshrc
+
 # Install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -52,3 +56,4 @@ echo 'bindkey  "^[[3~"  delete-char' >> ~/.zshrc
 
 # Print installation complete message
 echo "Installation complete!"
+
