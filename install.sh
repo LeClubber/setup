@@ -9,6 +9,7 @@ sudo apt-get install -y curl git vim zsh nano fzf direnv bat gpg
 # Set bat
 ln -s /usr/bin/batcat ~/.local/bin/bat
 echo 'alias cat="bat"' >> ~/.zshrc
+echo 'export BAT_THEME="Visual Studio Dark+"' >> ~/.zshrc
 # To see all the themes : bat --list-themes | fzf --preview="bat --theme={} --color=always ./install.sh"
 
 # Install Oh My Zsh
