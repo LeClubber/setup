@@ -45,6 +45,12 @@ sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.lis
 sudo apt update
 sudo apt install -y eza
 
+# Alias for eza
+echo 'alias ls="eza -l --icons=always --group-directories-first --no-permissions --no-filesize --no-user --no-time"' >> ~/.zshrc
+echo 'alias ll="eza -lha --icons=always --group-directories-first"' >> ~/.zshrc
+echo 'alias llg="eza -lha --icons=always --group-directories-first --git"' >> ~/.zshrc
+echo 'alias tree="eza -l --icons=always --group-directories-first --no-permissions --no-filesize --no-user --no-time --tree"' >> ~/.zshrc
+
 # Install zoxide
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 # Set Zsh completions
