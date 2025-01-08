@@ -13,6 +13,7 @@ echo 'export BAT_THEME="Visual Studio Dark+"' >> ~/.zshrc
 # To see all the themes : bat --list-themes | fzf --preview="bat --theme={} --color=always ./install.sh"
 
 # Install Oh My Zsh
+export RUNZSH=no
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 # Set Zsh theme
