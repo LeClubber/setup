@@ -1,10 +1,13 @@
 #!/bin/bash
 
+# Install this packages first
+# sudo apt-get install -y curl git
+
 # Update package lists
 sudo apt-get update && sudo apt-get upgrade -y
 
 # Install necessary packages
-sudo apt-get install -y curl git vim zsh nano fzf direnv bat gpg btop
+sudo apt-get install -y zsh vim nano fzf direnv bat gpg btop
 
 # Set bat
 ln -s /usr/bin/batcat ~/.local/bin/bat
