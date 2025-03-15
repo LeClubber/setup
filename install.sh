@@ -9,18 +9,12 @@ sudo apt-get update && sudo apt-get upgrade -y
 # Install necessary packages
 sudo apt-get install -y zsh vim nano fzf direnv bat gpg btop
 
-# Set bat
-ln -s /usr/bin/batcat ~/.local/bin/bat
-echo 'alias cat="bat"' >> ~/.zshrc
-echo 'export BAT_THEME="Visual Studio Dark+"' >> ~/.zshrc
-# To see all the themes : bat --list-themes | fzf --preview="bat --theme={} --color=always ./install.sh"
-
 # Install Oh My Zsh
 export RUNZSH=no
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 # Set Zsh theme
-sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k/powerlevel10k"/g' ~/.zshrc
+sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' ~/.zshrc
 echo '# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.' >> ~/.zshrc
 echo '[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh' >> ~/.zshrc
 
@@ -28,6 +22,14 @@ echo '[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh' >> ~/.zshrc
 if [ ! -f ~/.p10k.zsh ]; then
     cp p10k.zsh ~/.p10k.zsh
 fi
+
+# Set bat
+ln -s /usr/bin/batcat ~/.local/bin/bat
+echo '' >> ~/.zshrc
+echo '# Set bat as cat' >> ~/.zshrc
+echo 'alias cat="bat"' >> ~/.zshrc
+echo 'export BAT_THEME="Visual Studio Dark+"' >> ~/.zshrc
+# To see all the themes : bat --list-themes | fzf --preview="bat --theme={} --color=always ./install.sh"
 
 # Install Zsh plugins
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -50,18 +52,23 @@ sudo apt update
 sudo apt install -y eza
 
 # Alias for eza
+echo '' >> ~/.zshrc
+echo '# Alias for eza' >> ~/.zshrc
 echo 'alias ls="eza -l --icons=always --group-directories-first --no-permissions --no-filesize --no-user --no-time"' >> ~/.zshrc
-echo 'alias ll="eza -lha --icons=always --group-directories-first"' >> ~/.zshrc
-echo 'alias llg="eza -lha --icons=always --group-directories-first --git"' >> ~/.zshrc
+echo 'alias ll="eza -lha --icons=always --group-directories-first --git"' >> ~/.zshrc
 echo 'alias tree="eza -l --icons=always --group-directories-first --no-permissions --no-filesize --no-user --no-time --tree"' >> ~/.zshrc
 
 # Install zoxide
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 # Set Zsh completions
+echo '' >> ~/.zshrc
+echo '# To enable zoxide completions' >> ~/.zshrc
 echo 'eval "$(zoxide init zsh)"' >> ~/.zshrc
 
 # Set Zsh keybindings
 # echo 'bindkey "^T" fzf-cd-widget' >> ~/.zshrc
+echo '' >> ~/.zshrc
+echo '# Set keybindings' >> ~/.zshrc
 echo 'bindkey  "^[[H"   beginning-of-line' >> ~/.zshrc
 echo 'bindkey  "^[[F"   end-of-line' >> ~/.zshrc
 echo 'bindkey  "^[[3~"  delete-char' >> ~/.zshrc
