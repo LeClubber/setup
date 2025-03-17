@@ -24,7 +24,9 @@ if [ ! -f ~/.p10k.zsh ]; then
 fi
 
 # Set bat
+mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
+sed -i 's/#export PATH=$HOME/export PATH=$HOME/g' ~/.zshrc
 echo '' >> ~/.zshrc
 echo '# Set bat as cat' >> ~/.zshrc
 echo 'alias cat="bat"' >> ~/.zshrc
