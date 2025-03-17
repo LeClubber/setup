@@ -41,9 +41,16 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 sed -i 's/plugins=(git)/plugins=(git git-extras docker docker-compose ubuntu zsh-autosuggestions zsh-syntax-highlighting fzf)/g' ~/.zshrc
 
 # Install Docker
-curl -fsSL https://get.docker.com -o get-docker.sh
-sh get-docker.sh
-sudo usermod -aG docker $USER
+read -p "Do you want to install Docker? [Y/n]: " install_docker
+install_docker=${install_docker:-Y}
+if [ $install_docker = "Y" ] || [ $install_docker = "y" ]; then
+    echo "Installing Docker..."
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sh get-docker.sh
+    sudo usermod -aG docker $USER
+else
+    echo "Skipping Docker installation..."
+fi
 
 # Install eza
 sudo mkdir -p /etc/apt/keyrings
