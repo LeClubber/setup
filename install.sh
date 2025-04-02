@@ -38,19 +38,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 # Set Zsh plugins
-sed -i 's/plugins=(git)/plugins=(git git-extras docker docker-compose ubuntu zsh-autosuggestions zsh-syntax-highlighting fzf)/g' ~/.zshrc
-
-# Install Docker
-read -p "Do you want to install Docker? [Y/n]: " install_docker
-install_docker=${install_docker:-Y}
-if [ $install_docker = "Y" ] || [ $install_docker = "y" ]; then
-    echo "Installing Docker..."
-    curl -fsSL https://get.docker.com -o get-docker.sh
-    sh get-docker.sh
-    sudo usermod -aG docker $USER
-else
-    echo "Skipping Docker installation..."
-fi
+sed -i 's/plugins=(git)/plugins=(git git-extras ubuntu zsh-autosuggestions zsh-syntax-highlighting fzf)/g' ~/.zshrc
 
 # Install eza
 sudo mkdir -p /etc/apt/keyrings
@@ -82,8 +70,18 @@ echo 'bindkey  "^[[H"   beginning-of-line' >> ~/.zshrc
 echo 'bindkey  "^[[F"   end-of-line' >> ~/.zshrc
 echo 'bindkey  "^[[3~"  delete-char' >> ~/.zshrc
 
-# Print installation complete message
-echo "Installation complete!"
+# Install Docker
+read -p "Do you want to install Docker? [Y/n]: " install_docker
+install_docker=${install_docker:-Y}
+if [ $install_docker = "Y" ] || [ $install_docker = "y" ]; then
+    echo "Installing Docker..."
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sh get-docker.sh
+    sudo usermod -aG docker $USER
+    sed -i 's/plugins=(\(.*\))/plugins=(\1 docker docker-compose)/' ~/.zshrc
+else
+    echo "Skipping Docker installation..."
+fi
 
 # Install asdf
 read -p "Do you want to install asdf? [Y/n]: " install_asdf
@@ -98,3 +96,6 @@ if [ $install_asdf = "Y" ] || [ $install_asdf = "y" ]; then
 else
     echo "Skipping asdf installation..."
 fi
+
+# Print installation complete message
+echo "Installation complete!"
