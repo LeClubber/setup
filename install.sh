@@ -85,3 +85,16 @@ echo 'bindkey  "^[[3~"  delete-char' >> ~/.zshrc
 # Print installation complete message
 echo "Installation complete!"
 
+# Install asdf
+read -p "Do you want to install asdf? [Y/n]: " install_asdf
+install_asdf=${install_asdf:-Y}
+if [ $install_asdf = "Y" ] || [ $install_asdf = "y" ]; then
+    echo "Installing asdf..."
+    sudo apt-get install -y build-essential clang unzip
+    wget https://github.com/asdf-vm/asdf/releases/download/v0.16.7/asdf-v0.16.7-linux-amd64.tar.gz -O asdf.tar.gz
+    tar -xzf asdf.tar.gz -C ~/.local/bin
+    rm -f asdf.tar.gz
+    sed -i 's/plugins=(\(.*\))/plugins=(\1 asdf)/' ~/.zshrc
+else
+    echo "Skipping asdf installation..."
+fi
