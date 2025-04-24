@@ -54,6 +54,11 @@ echo '# Alias for eza' >> ~/.zshrc
 echo 'alias ls="eza -l --icons=always --group-directories-first --no-permissions --no-filesize --no-user --no-time"' >> ~/.zshrc
 echo 'alias ll="eza -lha --icons=always --group-directories-first --git"' >> ~/.zshrc
 echo 'alias tree="eza -l --icons=always --group-directories-first --no-permissions --no-filesize --no-user --no-time --tree"' >> ~/.zshrc
+# Themes for eza
+mkdir -p ~/.config/eza/
+cd ~/.config/eza/
+git clone https://github.com/eza-community/eza-themes.git
+ln -s ~/.config/eza/eza-themes/themes/frosty.yml ~/.config/eza/theme.yml
 
 # Install zoxide
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
